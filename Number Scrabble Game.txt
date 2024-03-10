@@ -1,0 +1,122 @@
+// Program: This game(Game 2(Scrabble game)) is played by 2 players and the first player who chooses 3 or more numbers that the sum of 3 of then=m is 15 will win
+// Author: Mohamed Sheref and the section isn't determined yet
+// ID: 20231142
+// Version: 1.0
+// Date: 28 / 2  / 2024
+#include <iostream>
+#include <numeric>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+using namespace std;
+int main()
+{
+vector <int> list = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+vector <int> sum1, sum2;
+cout << "You should choose 3 or 4 numbers from 1 to 9, and the sum of 3 of them should be 15 to win" << endl;
+for(int num : list){
+    cout << num << " ";
+}
+cout << endl;
+while (true)
+{
+  int summ1 = accumulate(sum1.begin(), sum1.end(), 0);
+  if(sum1.size() >= 3)
+  {
+  if (summ1 == 15)
+  {
+    cout << "Player 1 is the winner" << endl;
+    break;
+  }
+  }
+  int summ2 = accumulate(sum2.begin(), sum2.end(), 0);
+  if(sum2.size() >= 3)
+  {
+  if (summ2 == 15)
+  {
+    cout << "Player 2 is the winner" << endl;
+    break;
+  }
+  }
+  int chose1;
+  string choose1 = to_string(chose1);
+  while (choose1 != "1" || choose1 != "2" || choose1 != "3" || choose1 != "4" || choose1 != "5" || choose1 != "6" || choose1 != "7" || choose1 != "8" || choose1 != "9")
+  {
+    cout << "Player 1: Please enter a valid number" << endl;
+    cin >> chose1;
+  }
+  
+  cout << "Player 1: Choose a number between 1 and 9: ";
+  cin >> chose1;
+  while (chose1 > 9 || chose1 < 1 || find(list.begin(), list.end(), chose1) == list.end())
+  {
+    cout << "Player 1: Choose a number between 1 and 9: ";
+    cin >> chose1;
+  }
+  sum1.push_back(chose1);
+  list.erase(remove(list.begin(), list.end(), chose1), list.end());
+  if (sum1.size() == 3)
+  {
+      if(sum1[0] + sum1[1] + sum1[2] == 15)
+      {
+          cout << "Player 1 is the winner" << endl;
+          break;
+      }
+  }
+  if (sum1.size() == 4)
+  {
+    if(sum1[0]+sum1[1]+sum1[2]==15||sum1[0]+sum1[1]+sum1[3]==15||sum1[0]+sum1[2]+sum1[3]==15||sum1[1]+sum1[2]+sum1[3]==15)
+    {
+      cout << "Player 1 is the winner" << endl;
+    break;
+    }
+  }
+  if (sum1.size() == 5)
+  {
+    if (sum1[0]+sum1[1]+sum1[2]==15||sum1[0]+sum1[1]+sum1[3]==15||sum1[0]+sum1[2]+sum1[3]==15||sum1[1]+sum1[2]+sum1[3]||sum1[0]+sum1[1]+sum1[4]==15||sum1[0]+sum1[2]+sum1[4]==15||sum1[0]+sum1[3]+sum1[4]==15||sum1[1]+sum1[2]+sum1[4]==15||sum1[1]+sum1[3]+sum1[4]==15)
+    {
+      cout << "Player 1 is the winner" << endl;
+      break;
+    } 
+  }
+for(int num : list){
+    cout << num << " ";
+}
+cout << endl;
+if (list.size() == 0)
+  {
+    cout << "Nobody won" << endl;
+    break;
+  }
+int chose2;
+string choose2 = to_string(chose2);
+while (choose2 != "1" || choose2 != "2" || choose2 != "3" || choose2 != "4" || choose2 != "5" || choose2 != "6" || choose2 != "7" || choose2 != "8" || choose2 != "9")
+{
+cout << "Player 2: Please enter a valid number" << endl;
+cin >> chose2;
+}
+  cout << "Player 2: Choose a number between 1 and 9: ";
+  cin >> chose2;
+  while (chose2 > 9 || chose2 < 1 || find(list.begin(), list.end(), chose2) == list.end())
+  {
+    cout << "Player 2: Choose a number between 1 and 9: ";
+    cin >> chose2;
+  }
+  sum2.push_back(chose2);
+  list.erase(remove(list.begin(), list.end(), chose2), list.end());
+  
+  if (sum2.size() == 4)
+  {
+    if (sum2[0]+sum2[1]+sum2[2]==15||sum2[0]+sum2[1]+sum2[3]==15||sum2[0]+sum2[2]+sum2[3]==15||sum2[1]+sum2[2]+sum2[3]==15)
+    {
+      cout << "Player 2 is the winner" << endl;
+      break;
+    }
+  }
+  for(int num : list){
+    cout << num << " ";
+}
+cout << endl;
+}
+return 0;
+}
